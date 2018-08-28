@@ -1,10 +1,9 @@
-'use strict';
+const add = (a,b)=>{
+    return a+b;
+}
 
-var add = function add(a, b) {
-    return a + b;
-};
+console.log(add(1,2));
 
-console.log(add(1, 2));
 
 // const user = {
 //     name:"Dishu",
@@ -19,36 +18,32 @@ console.log(add(1, 2));
 //     }
 // }
 
-var user = {
-    name: "Dishu",
-    cities: ['Rajpura', 'Arezzo', 'New York'],
-    printPlacesLived: function printPlacesLived() {
-        var _this = this;
-
-        var cityMessages = this.cities.map(function (city) {
-            return _this.name + " has lived in " + city;
+const user = {
+    name:"Dishu",
+    cities:['Rajpura', 'Arezzo', 'New York'],
+    printPlacesLived(){
+        const cityMessages = this.cities.map((city) =>{
+            return this.name + " has lived in " + city;
         });
         return cityMessages;
     }
-};
+}
 
 console.log(user.printPlacesLived());
 
-var multiplier = {
-    numbers: [2, 4, 6, 7],
-    multiplyBy: 2,
+
+
+const multiplier = {
+    numbers:[2,4,6,7],
+    multiplyBy:2,
     // multiply(){
     //     const result = this.numbers.map((num)=>{
     //         return num*this.multiplyBy;
     //     });
     //     return result;
     // }
-    multiply: function multiply() {
-        var _this2 = this;
-
-        return this.numbers.map(function (num) {
-            return num * _this2.multiplyBy;
-        });
+    multiply(){
+        return this.numbers.map((num) => num * this.multiplyBy);
     }
-};
+}
 console.log(multiplier.multiply());
