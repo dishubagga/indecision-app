@@ -1,54 +1,111 @@
-'use strict';
+"use strict";
 
-var add = function add(a, b) {
-    return a + b;
-};
+console.log("app is running");
 
-console.log(add(1, 2));
+// var template = <p>This is JSX from app.js</p>;
 
-// const user = {
-//     name:"Dishu",
-//     cities:['Rajpura, Arezzo, New York'],
-//     printPlacesLived: function() {
-//         console.log(this.name);
-//         console.log(this.cities);
-//         const that = this;
-//         this.cities.forEach(function(city){
-//             console.log(that.name + " has lived in " + city);
-//         });
+// var app = {
+//     title: 'Indecision app',
+//     subtitle: 'hello',
+//     location: 'New York',
+//     options: [1,2,3]
+// };
+
+// let getLocation = (location)=>{
+//     if (location) {
+//         return <p>location: {location}!</p>;
+//     }
+//     else {
+//         return 'Unknown';
 //     }
 // }
 
-var user = {
-    name: "Dishu",
-    cities: ['Rajpura', 'Arezzo', 'New York'],
-    printPlacesLived: function printPlacesLived() {
-        var _this = this;
+// var template = (
+//     <div>
+//         <h1>title: {app.title ? app.title : "No title"} </h1>
 
-        var cityMessages = this.cities.map(function (city) {
-            return _this.name + " has lived in " + city;
-        });
-        return cityMessages;
-    }
+//         <p>{app.subtitle ?  app.subtitle: "No subtitle"}</p> 
+//         {/* {app.subtitle && <p>{app.subtitle}</p>} */}
+
+//         {getLocation(app.location)}
+
+//         {app.options.length > 0 && <p>{app.options}</p>}
+
+//         <ol>
+//             <li>first</li>
+//             <li>second</li>
+//         </ol>
+
+//     </div>
+// );
+
+var count = 0;
+var addOne = function addOne() {
+    count++;
+    renderCounterApp();
 };
-
-console.log(user.printPlacesLived());
-
-var multiplier = {
-    numbers: [2, 4, 6, 7],
-    multiplyBy: 2,
-    // multiply(){
-    //     const result = this.numbers.map((num)=>{
-    //         return num*this.multiplyBy;
-    //     });
-    //     return result;
-    // }
-    multiply: function multiply() {
-        var _this2 = this;
-
-        return this.numbers.map(function (num) {
-            return num * _this2.multiplyBy;
-        });
-    }
+var minusOne = function minusOne() {
+    count--;
+    renderCounterApp();
 };
-console.log(multiplier.multiply());
+var reset = function reset() {
+    count = 0;
+    renderCounterApp();
+};
+var templateTwo = React.createElement(
+    "div",
+    null,
+    React.createElement(
+        "h1",
+        null,
+        "Count: ",
+        count
+    ),
+    React.createElement(
+        "button",
+        { onClick: addOne },
+        "+1"
+    ),
+    React.createElement(
+        "button",
+        { onClick: minusOne },
+        "-1"
+    ),
+    React.createElement(
+        "button",
+        { onClick: reset },
+        "reset"
+    )
+);
+
+var appRoot = document.getElementById("app");
+
+var renderCounterApp = function renderCounterApp() {
+    var templateTwo = React.createElement(
+        "div",
+        null,
+        React.createElement(
+            "h1",
+            null,
+            "Count: ",
+            count
+        ),
+        React.createElement(
+            "button",
+            { onClick: addOne },
+            "+1"
+        ),
+        React.createElement(
+            "button",
+            { onClick: minusOne },
+            "-1"
+        ),
+        React.createElement(
+            "button",
+            { onClick: reset },
+            "reset"
+        )
+    );
+    ReactDOM.render(templateTwo, appRoot);
+};
+renderCounterApp();
