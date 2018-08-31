@@ -1,81 +1,78 @@
 console.log("app is running");
 
-// var template = <p>This is JSX from app.js</p>;
+const template1 = <p>This is JSX from app.js</p>;
 
-// var app = {
-//     title: 'Indecision app',
-//     subtitle: 'hello',
-//     location: 'New York',
-//     options: [1,2,3]
-// };
+const app = {
+    title: 'Indecision app',
+    subtitle: 'hello',
+    location: 'New York',
+    options: []
+};
 
-// let getLocation = (location)=>{
-//     if (location) {
-//         return <p>location: {location}!</p>;
-//     }
-//     else {
-//         return 'Unknown';
-//     }
-// }
-
-// var template = (
-//     <div>
-//         <h1>title: {app.title ? app.title : "No title"} </h1>
-       
-//         <p>{app.subtitle ?  app.subtitle: "No subtitle"}</p> 
-//         {/* {app.subtitle && <p>{app.subtitle}</p>} */}
-
-//         {getLocation(app.location)}
-        
-//         {app.options.length > 0 && <p>{app.options}</p>}
-        
-//         <ol>
-//             <li>first</li>
-//             <li>second</li>
-//         </ol>
-
-//     </div>
-// );
-
-let count = 0;
-const addOne = () => {
-    count++;
-    renderCounterApp();
-    
+const getLocation = (location)=>{
+    if (location) {
+        return <p>location: {location}!</p>;
+    }
+    else {
+        return 'Unknown';
+    }
 }
-const minusOne = () => {
-    count--;
-    renderCounterApp();
-    
+
+const onFormSubmit = (e)=>{
+    e.preventDefault();
+    const option =  e.target.elements.option.value;
+    if(option){
+        app.options.push(option);
+        e.target.elements.option.value="";
+        renderApp();
+    }
 }
-const reset = () => {
-    count=0;
-    renderCounterApp();
-    
+
+const removeAll = ()=>{
+    app.options=[];
+    renderApp();
 }
-const templateTwo = (
-    <div>
-        <h1>Count: {count}</h1>
-        <button onClick={addOne}>+1</button>
-        <button onClick={minusOne}>-1</button>
-        <button onClick={ reset}>reset</button>
-    </div>
 
-);
+const onMakeDecision = ()=>{
+    const randomNum = Math.floor(Math.random()*app.options.length);
+    const option = app.options[randomNum];
+    alert(option); 
+}
 
-var appRoot = document.getElementById("app");
+const appRoot = document.getElementById("app");
 
 
-const renderCounterApp = ()=>{
-    const templateTwo = (
+const renderApp = ()=>{
+    let template = (
         <div>
-            <h1>Count: {count}</h1>
-            <button onClick={addOne}>+1</button>
-            <button onClick={minusOne}>-1</button>
-            <button onClick={ reset}>reset</button>
-        </div>
+            <h1>title: {app.title ? app.title : "No title"} </h1>
+           
+            <p>{app.subtitle ?  app.subtitle: "No subtitle"}</p> 
     
+            {getLocation(app.location)}
+            <p>{app.options.length>0 ? "Here are your options":"No options"}</p>
+            <button disabled={!app.options.length > 0} onClick={onMakeDecision}>What Should i do?</button>
+            <button onClick = {removeAll}>Remove all</button>
+            
+            <ol>
+                {
+                    app.options.map((option)=>{
+                        return <li key={option}>{option}</li>
+                    })
+                }    
+            </ol>
+            
+            <p>{app.options.length}</p>
+            
+            <form onSubmit={onFormSubmit}>
+                <input type="text" name="option"></input>
+                <button> Add Button </button>
+            </form>
+    
+        </div>
     );
-    ReactDOM.render(templateTwo, appRoot);
+    
+    ReactDOM.render(template, appRoot);
 }
-renderCounterApp();
+renderApp();
+
