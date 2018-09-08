@@ -1,3 +1,13 @@
+const obj = {
+    name:"dishu",
+    getName(){
+        return this.name;
+    }
+}
+const Nama = obj.getName.bind(obj);
+console.log(Nama()); 
+
+
 class IndecesionApp extends React.Component {
     render() {
         const title="Indecision App";
@@ -26,20 +36,28 @@ class Header extends React.Component {
 }
 
 class Action extends React.Component {
+    handlePick() {
+        alert("handlePick");
+    }
     render() {
         return (
             <div>
-                <button>What should i do?</button>
+                <button onClick={this.handlePick}>What should i do?</button>
             </div>
         );
     }
 }
 
 class Options extends React.Component {
+    handleRemoveAll() {
+        alert("removeall");
+        console.log(this.props.options);
+    }
     render() {
         return (
             <div>
                 {/* <Option options={this.props.options}/> */}
+                <button onClick={this.handleRemoveAll.bind(this)}>Remove All</button>
                 {
                     this.props.options.map((option)=> <Option key={option} optionText={option} /> )
                 }
@@ -62,10 +80,16 @@ class Option extends React.Component {
 }
 
 class AddOption extends React.Component {
+    handleAddOption(e) {
+        e.preventDefault();
+        if(e.target.elements.input.value){
+            alert("yes");
+        }
+    }
     render() {
         return (
             <div>
-                <form >  
+                <form onSubmit={this.handleAddOption}>  
                     <input type="text" name="input"></input>
                     <button >Add Options</button>
                 </form>
@@ -76,13 +100,13 @@ class AddOption extends React.Component {
 }
 
 
-const jsx = (
-    <div>
-        <Header />
-        <Action />
-        <Options />
-        <AddOption />
-    </div>
-);
+// const jsx = (
+//     <div>
+//         <Header />
+//         <Action />
+//         <Options />
+//         <AddOption />
+//     </div>
+// );
 
 ReactDOM.render(<IndecesionApp/>, document.getElementById("app"));

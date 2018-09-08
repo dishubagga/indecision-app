@@ -8,6 +8,15 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var obj = {
+    name: "dishu",
+    getName: function getName() {
+        return this.name;
+    }
+};
+var Nama = obj.getName.bind(obj);
+console.log(Nama());
+
 var IndecesionApp = function (_React$Component) {
     _inherits(IndecesionApp, _React$Component);
 
@@ -80,6 +89,11 @@ var Action = function (_React$Component3) {
     }
 
     _createClass(Action, [{
+        key: "handlePick",
+        value: function handlePick() {
+            alert("handlePick");
+        }
+    }, {
         key: "render",
         value: function render() {
             return React.createElement(
@@ -87,7 +101,7 @@ var Action = function (_React$Component3) {
                 null,
                 React.createElement(
                     "button",
-                    null,
+                    { onClick: this.handlePick },
                     "What should i do?"
                 )
             );
@@ -107,11 +121,22 @@ var Options = function (_React$Component4) {
     }
 
     _createClass(Options, [{
+        key: "handleRemoveAll",
+        value: function handleRemoveAll() {
+            alert("removeall");
+            console.log(this.props.options);
+        }
+    }, {
         key: "render",
         value: function render() {
             return React.createElement(
                 "div",
                 null,
+                React.createElement(
+                    "button",
+                    { onClick: this.handleRemoveAll.bind(this) },
+                    "Remove All"
+                ),
                 this.props.options.map(function (option) {
                     return React.createElement(Option, { key: option, optionText: option });
                 })
@@ -156,6 +181,14 @@ var AddOption = function (_React$Component6) {
     }
 
     _createClass(AddOption, [{
+        key: "handleAddOption",
+        value: function handleAddOption(e) {
+            e.preventDefault();
+            if (e.target.elements.input.value) {
+                alert("yes");
+            }
+        }
+    }, {
         key: "render",
         value: function render() {
             return React.createElement(
@@ -163,7 +196,7 @@ var AddOption = function (_React$Component6) {
                 null,
                 React.createElement(
                     "form",
-                    null,
+                    { onSubmit: this.handleAddOption },
                     React.createElement("input", { type: "text", name: "input" }),
                     React.createElement(
                         "button",
@@ -178,13 +211,13 @@ var AddOption = function (_React$Component6) {
     return AddOption;
 }(React.Component);
 
-var jsx = React.createElement(
-    "div",
-    null,
-    React.createElement(Header, null),
-    React.createElement(Action, null),
-    React.createElement(Options, null),
-    React.createElement(AddOption, null)
-);
+// const jsx = (
+//     <div>
+//         <Header />
+//         <Action />
+//         <Options />
+//         <AddOption />
+//     </div>
+// );
 
 ReactDOM.render(React.createElement(IndecesionApp, null), document.getElementById("app"));
