@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -18,25 +18,25 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // console.log(Nama()); 
 
 
-var IndecesionApp = function (_React$Component) {
-    _inherits(IndecesionApp, _React$Component);
+var IndecisionApp = function (_React$Component) {
+    _inherits(IndecisionApp, _React$Component);
 
-    function IndecesionApp(props) {
-        _classCallCheck(this, IndecesionApp);
+    function IndecisionApp(props) {
+        _classCallCheck(this, IndecisionApp);
 
-        var _this = _possibleConstructorReturn(this, (IndecesionApp.__proto__ || Object.getPrototypeOf(IndecesionApp)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (IndecisionApp.__proto__ || Object.getPrototypeOf(IndecisionApp)).call(this, props));
 
         _this.handleDeleteOptions = _this.handleDeleteOptions.bind(_this);
         _this.handlePick = _this.handlePick.bind(_this);
         _this.handleAddOption = _this.handleAddOption.bind(_this);
         _this.state = {
-            options: ['Thing one', 'Thing two', 'Thing four']
+            options: props.options
         };
         return _this;
     }
 
-    _createClass(IndecesionApp, [{
-        key: 'handleAddOption',
+    _createClass(IndecisionApp, [{
+        key: "handleAddOption",
         value: function handleAddOption(option) {
             if (!option) {
                 return "please enter valid value";
@@ -50,7 +50,7 @@ var IndecesionApp = function (_React$Component) {
             });
         }
     }, {
-        key: 'handleDeleteOptions',
+        key: "handleDeleteOptions",
         value: function handleDeleteOptions() {
             this.setState(function (prevState) {
                 return {
@@ -59,7 +59,7 @@ var IndecesionApp = function (_React$Component) {
             });
         }
     }, {
-        key: 'handlePick',
+        key: "handlePick",
         value: function handlePick() {
             var _this2 = this;
 
@@ -71,14 +71,12 @@ var IndecesionApp = function (_React$Component) {
             });
         }
     }, {
-        key: 'render',
+        key: "render",
         value: function render() {
-            var title = "Indecision App";
-            var subtitle = "Put your life in the hands of computer!";
             return React.createElement(
-                'div',
+                "div",
                 null,
-                React.createElement(Header, { title: title, subtitle: subtitle }),
+                React.createElement(Header, null),
                 React.createElement(Action, {
                     hasOptions: this.state.options.length > 0,
                     handlePick: this.handlePick
@@ -92,49 +90,57 @@ var IndecesionApp = function (_React$Component) {
         }
     }]);
 
-    return IndecesionApp;
+    return IndecisionApp;
 }(React.Component);
+
+IndecisionApp.defaultProps = {
+    options: []
+};
 
 var Header = function Header(props) {
     return React.createElement(
-        'div',
+        "div",
         null,
         React.createElement(
-            'h1',
+            "h1",
             null,
             props.title
         ),
         React.createElement(
-            'h2',
+            "h2",
             null,
             props.subtitle
         )
     );
 };
 
+Header.defaultProps = {
+    title: "Indecision app!"
+};
+
 var Action = function Action(props) {
     return React.createElement(
-        'div',
+        "div",
         null,
         React.createElement(
-            'button',
+            "button",
             {
                 onClick: props.handlePick,
                 disabled: !props.hasOptions
             },
-            'What should i do?'
+            "What should i do?"
         )
     );
 };
 
 var Options = function Options(props) {
     return React.createElement(
-        'div',
+        "div",
         null,
         React.createElement(
-            'button',
+            "button",
             { onClick: props.handleDeleteOptions },
-            'Remove All'
+            "Remove All"
         ),
         props.options.map(function (option) {
             return React.createElement(Option, { key: option, optionText: option });
@@ -143,7 +149,7 @@ var Options = function Options(props) {
 };
 var Option = function Option(props) {
     return React.createElement(
-        'div',
+        "div",
         null,
         props.optionText
     );
@@ -165,7 +171,7 @@ var AddOption = function (_React$Component2) {
     }
 
     _createClass(AddOption, [{
-        key: 'handleAddOption',
+        key: "handleAddOption",
         value: function handleAddOption(e) {
             e.preventDefault();
             var option = e.target.elements.option.value.trim();
@@ -175,24 +181,24 @@ var AddOption = function (_React$Component2) {
             });
         }
     }, {
-        key: 'render',
+        key: "render",
         value: function render() {
             return React.createElement(
-                'div',
+                "div",
                 null,
                 this.state.error && React.createElement(
-                    'p',
+                    "p",
                     null,
                     this.state.error
                 ),
                 React.createElement(
-                    'form',
+                    "form",
                     { onSubmit: this.handleAddOption },
-                    React.createElement('input', { type: 'text', name: 'option' }),
+                    React.createElement("input", { type: "text", name: "option" }),
                     React.createElement(
-                        'button',
+                        "button",
                         null,
-                        'Add Options'
+                        "Add Options"
                     )
                 )
             );
@@ -204,18 +210,18 @@ var AddOption = function (_React$Component2) {
 
 var User = function User(props) {
     return React.createElement(
-        'div',
+        "div",
         null,
         React.createElement(
-            'p',
+            "p",
             null,
-            'Name : ',
+            "Name : ",
             props.name
         ),
         React.createElement(
-            'p',
+            "p",
             null,
-            'Age : ',
+            "Age : ",
             props.age
         )
     );
@@ -230,4 +236,4 @@ var User = function User(props) {
 //     </div>
 // );
 
-ReactDOM.render(React.createElement(IndecesionApp, null), document.getElementById("app"));
+ReactDOM.render(React.createElement(IndecisionApp, null), document.getElementById("app"));

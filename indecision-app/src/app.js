@@ -8,14 +8,14 @@
 // console.log(Nama()); 
 
 
-class IndecesionApp extends React.Component {
+class IndecisionApp extends React.Component {
     constructor(props){
         super(props);
         this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
         this.handlePick = this.handlePick.bind(this);
         this.handleAddOption = this.handleAddOption.bind(this);
         this.state = {
-            options : ['Thing one', 'Thing two', 'Thing four']
+            options : props.options
         };
     }
     handleAddOption(option){
@@ -47,11 +47,9 @@ class IndecesionApp extends React.Component {
         })
     }
     render() {
-        const title="Indecision App";
-        const subtitle = "Put your life in the hands of computer!";
         return (
             <div>
-                <Header title={title} subtitle={subtitle}/>
+                <Header />
                 <Action 
                     hasOptions = {this.state.options.length > 0}
                     handlePick = {this.handlePick}
@@ -66,6 +64,10 @@ class IndecesionApp extends React.Component {
     } 
 }
 
+IndecisionApp.defaultProps = {
+    options:[]
+}
+
 const Header = (props)=> {
     return (
         <div>
@@ -73,6 +75,10 @@ const Header = (props)=> {
             <h2>{props.subtitle}</h2>
         </div> 
     );      
+}
+
+Header.defaultProps = {
+    title:"Indecision app!"
 }
 
 const Action = (props) => {
@@ -157,4 +163,4 @@ const User = (props)=>{
 //     </div>
 // );
 
-ReactDOM.render(<IndecesionApp/>, document.getElementById("app"));
+ReactDOM.render(<IndecisionApp/>, document.getElementById("app"));
