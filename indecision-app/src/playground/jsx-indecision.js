@@ -1,5 +1,3 @@
-console.log("app is running");
-
 const template1 = <p>This is JSX from app.js</p>;
 
 const app = {

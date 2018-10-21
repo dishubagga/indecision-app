@@ -25,7 +25,7 @@ class Option extends React.Component {
     render(){
         return(
             <ol>
-                {this.props.options.map((option)=> <li>{option}</li> )}
+                {this.props.options.map((option)=> <li key={option}>{option}</li> )}
             </ol>
         )
 
