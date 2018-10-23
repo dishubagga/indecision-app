@@ -3,17 +3,20 @@ import AddOption from './AddOption.js';
 import Options from './Options.js';
 import Header from './Header.js';
 export default class IndecisionApp extends React.Component {
-    constructor(props){
-        super(props);
-        this.handleAddOption = this.handleAddOption.bind(this);
-        this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
-        this.handleDeleteOption = this.handleDeleteOption.bind(this);
-        this.state = {
-            options : props.options
-        };
+    state = {
+        options : []
     }
+    // constructor(props){
+    //     super(props);
+    //     this.handleAddOption = this.handleAddOption.bind(this);
+    //     this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
+    //     this.handleDeleteOption = this.handleDeleteOption.bind(this);
+    //     this.state = {
+            
+    //     };
+    // }
 
-    handleAddOption(option){
+    handleAddOption = (option)=>{
         if(!option){
             return "please enter valid value"
         }
@@ -27,13 +30,13 @@ export default class IndecisionApp extends React.Component {
         })
     }
 
-    handleDeleteOptions(){
+    handleDeleteOptions = () => {
         this.setState(() => ({
             options:[]
         }))
     }
 
-    handleDeleteOption(optionToRemove){
+    handleDeleteOption = (optionToRemove) => {
             console.log(optionToRemove)
             this.setState((prevState)=>({
                 options : prevState.options.filter((option)=>{

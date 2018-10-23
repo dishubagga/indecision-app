@@ -13,7 +13,7 @@ module.exports = {
             exclude:/node_module/
         }]
     },
-    devtool:'cheap-module-eval-source-map',
+    devtool:'cheap-module-eval-source-map',//it is used for error detection
     devServer:{
         contentBase:path.join(__dirname,"public")
     }
